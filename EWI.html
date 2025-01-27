@@ -6,38 +6,57 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Company Filter</title>
     <style>
-       body {
-    font-family: Arial, sans-serif;
-    margin: 20px;
-}
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
 
-.filter-container {
-    margin-bottom: 20px;
-}
+        .filter-container {
+            margin-bottom: 20px;
+        }
 
-table {
-    width: 100%;
-    border-collapse: collapse;
-}
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
 
-th,
-td {
-    border: 1px solid #A9A8A9;
-    padding: 8px;
-    text-align: left;
-}
+        th,
+        td {
+            border: 1px solid #A9A8A9;
+            padding: 8px;
+            text-align: left;
+        }
 
-th {
+        th {
+            background-color: #5A5377;
+            color: #DBC554;
+            font-weight: bold;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+   .admin-link {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    padding: 10px 20px;
     background-color: #5A5377;
-    /* Purple shade */
     color: #DBC554;
-    /* White text */
-    font-weight: bold;
+    text-decoration: none;
+    border-radius: 4px;
+    font-size: 14px;
 }
 
-.hidden {
-    display: none;
+.admin-link:hover {
+    background-color: #6A6387;
 }
+
+        .full-tag {
+            color: #dc3545;
+            font-weight: bold;
+        }
     </style>
 </head>
 
@@ -57,8 +76,7 @@ th {
         </select>
         <br><br>
         (FULL) means these tables have the max amount of students and you will be put on a waitlist if you choose to
-        pick full
-        companies.
+        pick full companies.
     </div>
     <table id="company-table">
         <thead>
@@ -68,103 +86,36 @@ th {
                 <th>Desired Majors</th>
             </tr>
         </thead>
-        <tbody>
-            <tr data-majors="Civil Engineering, Environmental Engineering">
-                <td>AtkinsRealis</td>
-                <td><a href="https://www.atkinsrealis.com/" target="_blank">Visit</a></td>
-                <td>Civil Engineering, Environmental Engineering</td>
-            </tr>
-            <tr data-majors="Mechanical Engineering, Computer Science and Engineering, Electrical Engineering">
-                <td>Bently Nevada</td>
-                <td><a href="https://www.bakerhughes.com/bently-nevada" target="_blank">Visit</a></td>
-                <td>Mechanical Engineering, Computer Science and Engineering, Electrical Engineering</td>
-            </tr>
-            <tr data-majors="Civil Engineering, Environmental Engineering">
-                <td>CBG inc.</td>
-                <td><a href="https://www.cbandg.com/" target="_blank">Visit</a></td>
-                <td>Civil Engineering, Environmental Engineering</td>
-            </tr>
-            <tr data-majors="Mechanical Engineering, Civil Engineering, Electrical Engineering, Industrial Engineering">
-                <td>Clark Construction</td>
-                <td><a href="https://www.clarkconstruction.com" target="_blank">Visit</a></td>
-                <td>Mechanical Engineering, Civil Engineering, Electrical Engineering, Industrial Engineering</td>
-            </tr>
-            <tr
-                data-majors="Mechanical Engineering, Computer Science and Engineering, Electrical Engineering, Industrial Engineering">
-                <td>Ellsworth</td>
-                <td><a href="https://www.ellsworth.com/" target="_blank">Visit</a></td>
-                <td>Mechanical Engineering, Computer Science and Engineering, Electrical Engineering, Industrial
-                    Engineering</td>
-            </tr>
-            <tr data-majors="Mechanical Engineering, Civil Engineering, Environmental Engineering">
-                <td>Resource Development Company</td>
-                <td><a href="https://www.resourcedevelopmentco.com" target="_blank">Visit</a></td>
-                <td>Mechanical Engineering, Civil Engineering, Environmental Engineering</td>
-            </tr>
-            <tr data-majors="Mechanical Engineering">
-                <td>Fortis Construction</td>
-                <td><a href="https://fortisconstruction.com" target="_blank">Visit</a></td>
-                <td>Mechanical Engineering</td>
-            </tr>
-            <tr data-majors="Mechanical Engineering, Electrical Engineering, Computer Science and Engineering">
-                <td>Los Angeles Department of Water and Power (LADWP)</td>
-                <td><a href="https://www.ladwp.com" target="_blank">Visit</a></td>
-                <td>Mechanical Engineering, Electrical Engineering, Computer Science and Engineering</td>
-            </tr>
-            <tr data-majors="Mechanical Engineering, Electrical Engineering, Computer Science and Engineering">
-                <td>Legrand</td>
-                <td><a href="https://www.legrand.us/" target="_blank">Visit</a></td>
-                <td>Mechanical Engineering, Electrical Engineering, Computer Science and Engineering</td>
-            </tr>
-            <tr data-majors="Civil Engineering, Environmental Engineering">
-                <td>Lumos & Associates</td>
-                <td><a href="https://www.lumosinc.com/" target="_blank">Visit</a></td>
-                <td>Civil Engineering, Environmental Engineering</td>
-            </tr>
-            <tr data-majors="Civil Engineering">
-                <td>Placer County</td>
-                <td><a href="https://www.placer.ca.gov/1492/Public-Works" target="_blank">Visit</a></td>
-                <td>Civil Engineering</td>
-            </tr>
-            <tr data-majors="Civil Engineering, Mechanical Engineering">
-                <td>Whiting-Turner</td>
-                <td><a href="https://www.whiting-turner.com/" target="_blank">Visit</a></td>
-                <td>Civil Engineering, Mechanical Engineering</td>
-            </tr>
-            <tr data-majors="Civil Engineering, Public Works/ Transportation">
-                <td>Wood Rodgers</td>
-                <td><a href="https://www.woodrodgers.com/" target="_blank">Visit</a></td>
-                <td>Civil Engineering, Public Works/ Transportation</td>
-            </tr>
-            <tr data-majors="Civil Engineering">
-                <td>Wright Structural Engineering</td>
-                <td><a href="https://wrightengineers.com/" target="_blank">Visit</a></td>
-                <td>Civil Engineering</td>
-            </tr>
-            <tr data-majors="Civil Engineering, Architecture">
-                <td>JKAE</td>
-                <td><a href="https://www.jkaedesign.com/" target="_blank">Visit</a></td>
-                <td>Civil Engineering, Architecture</td>
-            </tr>
-            <tr data-majors="Civil Engineering, Mechanical Engineering, Electrical Engineering, Environmental Engineering">
-                <td>Kimley-Horn</td>
-                <td><a href="https://www.kimley-horn.com" target="_blank">Visit</a></td>
-                <td>Civil Engineering, Mechanical Engineering, Electrical Engineering, Environmental Engineering</td>
-            </tr>
-            <tr data-majors="Electrical Engineering">
-                <td>PK Electrical Inc.</td>
-                <td><a href="https://pkelectrical.com/" target="_blank">Visit</a></td>
-                <td>Electrical Engineering</td>
-            </tr>
-            </tbody>
-            </table>
-    <script>
-        const filterDropdown = document.getElementById('major-filter');
-        const companyTable = document.getElementById('company-table');
-        const rows = companyTable.querySelectorAll('tbody tr');
+        <tbody id="companyTableBody">
+        </tbody>
+    </table>
 
-        filterDropdown.addEventListener('change', () => {
-            const selectedMajor = filterDropdown.value;
+    <a href="admin-login.html" class="admin-link">Admin Login</a>
+
+    <script>
+        // Function to refresh the table
+        function refreshTable() {
+            const companies = loadCompanies();
+            const tbody = document.getElementById('companyTableBody');
+            tbody.innerHTML = '';
+
+            companies.forEach(company => {
+                const row = document.createElement('tr');
+                row.setAttribute('data-majors', company.majors.join(', '));
+
+                row.innerHTML = `
+                    <td>${company.name}${company.isFull ? ' <span class="full-tag">(FULL)</span>' : ''}</td>
+                    <td><a href="${company.website}" target="_blank">Visit</a></td>
+                    <td>${company.majors.join(', ')}</td>
+                `;
+                tbody.appendChild(row);
+            });
+            const selectedMajor = document.getElementById('major-filter').value;
+            filterCompanies(selectedMajor);
+        }
+        // Function to filter companies
+        function filterCompanies(selectedMajor) {
+            const rows = document.querySelectorAll('#companyTableBody tr');
 
             rows.forEach(row => {
                 const majors = row.getAttribute('data-majors');
@@ -174,6 +125,15 @@ th {
                     row.classList.add('hidden');
                 }
             });
+        }
+        document.getElementById('major-filter').addEventListener('change', (e) => {
+            filterCompanies(e.target.value);
+        });
+        refreshTable();
+        window.addEventListener('storage', (e) => {
+            if (e.key === 'companies') {
+                refreshTable();
+            }
         });
     </script>
 </body>
