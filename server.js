@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
+const path = require('path');
 require('dotenv').config();
 
 const app = express();
@@ -12,12 +13,20 @@ app.use(cors());
 app.use(express.json());
 app.use(express.static('frontend'));
 
-// MongoDB Connection
-const uri = "mongodb+srv://EWISWE:$WEplanner@companies-ewi.abqvr.mongodb.net/?retryWrites=true&w=majority&appName=companies-ewi";
+// Add this route at the top of your routes section
+app.get('/', (req, res) => {
+    res.redirect('/EWI.html');
+});
 
-mongoose.connect(uri)
-    .then(() => console.log('Connected to MongoDB'))
-    .catch(err => console.error('Could not connect to MongoDB:', err));
+// MongoDB Connection
+const uri = process.env.MONGODB_URI;
+
+mongoose.connect(uri, { 
+    useNewUrlParser: true, 
+    useUnifiedTopology: true 
+})
+.then(() => console.log('Connected to MongoDB'))
+.catch(err => console.error('Could not connect to MongoDB:', err));
 
 // Company Schema
 const companySchema = new mongoose.Schema({
@@ -38,7 +47,6 @@ const adminSchema = new mongoose.Schema({
 const Admin = mongoose.model('Admin', adminSchema);
 
 // Routes
-// Get all companies
 app.get('/api/companies', async (req, res) => {
     try {
         const companies = await Company.find();
@@ -48,7 +56,6 @@ app.get('/api/companies', async (req, res) => {
     }
 });
 
-// Get single company
 app.get('/api/companies/:id', async (req, res) => {
     try {
         const company = await Company.findById(req.params.id);
@@ -61,7 +68,6 @@ app.get('/api/companies/:id', async (req, res) => {
     }
 });
 
-// Create new company
 app.post('/api/companies', async (req, res) => {
     try {
         const company = new Company(req.body);
@@ -72,7 +78,6 @@ app.post('/api/companies', async (req, res) => {
     }
 });
 
-// Update company
 app.put('/api/companies/:id', async (req, res) => {
     try {
         const company = await Company.findByIdAndUpdate(
@@ -89,7 +94,6 @@ app.put('/api/companies/:id', async (req, res) => {
     }
 });
 
-// Delete company
 app.delete('/api/companies/:id', async (req, res) => {
     try {
         const company = await Company.findByIdAndDelete(req.params.id);
@@ -102,7 +106,6 @@ app.delete('/api/companies/:id', async (req, res) => {
     }
 });
 
-// Admin login route
 app.post('/api/admin/login', async (req, res) => {
     try {
         const { username, password } = req.body;
@@ -124,7 +127,12 @@ app.post('/api/admin/login', async (req, res) => {
     }
 });
 
-// Start server
+// Error handling middleware
+app.use((err, req, res, next) => {
+    console.error(err.stack);
+    res.status(500).send('Something broke!');
+});
+
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
